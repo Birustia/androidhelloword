@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnLogin.setOnClickListener(this);
 
 
-
     }
 
     @Override
@@ -45,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String mail = etEmail.getText().toString();
         String password = etPassword.getText().toString();
 
-        if (!validarVacio(mail) && !validarVacio(password) && validarMail(mail)) {
+        if ((!validarVacio(mail)) && (!validarVacio(password)) && (password.length() >= 7) && (validarMail(mail))) {
 
             Toast.makeText(this, "Iniciando Sesión", Toast.LENGTH_SHORT).show();
 
@@ -53,6 +52,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else {
             Toast.makeText(this, "error en el logeo", Toast.LENGTH_SHORT).show();
         }
+
+        if (validarVacio(mail)) {
+            Toast.makeText(this, "mail vacio", Toast.LENGTH_SHORT).show();
+
+        }
+
+        if ((validarVacio(password)) && (password.length() >= 7)) {
+            Toast.makeText(this, "contraseña vacia", Toast.LENGTH_SHORT).show();
+
+        }
+
+        if (validarMail(mail)) {
+            Toast.makeText(this, "mail bien ingresado", Toast.LENGTH_SHORT).show();
+
+        } else {
+            Toast.makeText(this, "mail mal ingresado", Toast.LENGTH_SHORT).show();
+        }
+
 
     }
 
