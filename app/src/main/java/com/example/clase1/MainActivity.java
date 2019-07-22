@@ -24,8 +24,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         etEmail = findViewById(R.id.et_Email);
         etPassword = findViewById(R.id.et_password);
         btnLogin = findViewById(R.id.btn_login);
+        btnLogin.setOnClickListener(this);
 
-        iniciarSecion(this);
 
 
     }
@@ -33,7 +33,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         if (view == btnLogin) {
-            Toast.makeText(this, "Iniciando Sesión", Toast.LENGTH_SHORT).show();
+            iniciarSecion(view);
+
+
         }
     }
 
@@ -45,10 +47,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (!validarVacio(mail) && !validarVacio(password) && validarMail(mail)) {
 
-            btnLogin.setOnClickListener(this);
+            Toast.makeText(this, "Iniciando Sesión", Toast.LENGTH_SHORT).show();
 
 
-        }else { Toast.makeText(this, "error en el logeo", Toast.LENGTH_SHORT).show();}
+        } else {
+            Toast.makeText(this, "error en el logeo", Toast.LENGTH_SHORT).show();
+        }
 
     }
 
@@ -60,7 +64,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (matEX.find()) {
             return true;
 
-        } else return true;
+        } else {
+            return false;
+        }
     }
 
 
