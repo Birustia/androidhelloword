@@ -24,7 +24,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         etEmail = findViewById(R.id.et_Email);
         etPassword = findViewById(R.id.et_password);
         btnLogin = findViewById(R.id.btn_login);
-        btnLogin.setOnClickListener(this);
+
+        iniciarSecion(this);
 
 
     }
@@ -42,12 +43,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String mail = etEmail.getText().toString();
         String password = etPassword.getText().toString();
 
-        if (!validarVacio(mail) && !validarVacio(password)) {
+        if (!validarVacio(mail) && !validarVacio(password) && validarMail(mail)) {
 
-            if (validarMail(mail)) {
+            btnLogin.setOnClickListener(this);
 
-            }
-        }
+
+        }else { Toast.makeText(this, "error en el logeo", Toast.LENGTH_SHORT).show();}
 
     }
 
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (matEX.find()) {
             return true;
 
-        }else  return true;
+        } else return true;
     }
 
 
