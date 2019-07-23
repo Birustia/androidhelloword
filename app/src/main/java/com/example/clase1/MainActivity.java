@@ -44,37 +44,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String mail = etEmail.getText().toString();
         String password = etPassword.getText().toString();
 
-        if ((!validarVacio(mail)) && (!validarVacio(password)) && (password.length() >= 7) && (validarMail(mail))) {
-
-            Toast.makeText(this, "Iniciando Sesión", Toast.LENGTH_SHORT).show();
-
-
-        } else {
-            Toast.makeText(this, "error en el logeo", Toast.LENGTH_SHORT).show();
-        }
-
-        if (validarVacio(mail)) {
-            Toast.makeText(this, "mail vacio", Toast.LENGTH_SHORT).show();
-
-        }
-
-        if ((validarVacio(password)) && (password.length() >= 7)) {
-            Toast.makeText(this, "contraseña vacia", Toast.LENGTH_SHORT).show();
-
-        }
-
-        if (validarMail(mail)) {
-            Toast.makeText(this, "mail bien ingresado", Toast.LENGTH_SHORT).show();
-
-        } else {
-            Toast.makeText(this, "mail mal ingresado", Toast.LENGTH_SHORT).show();
-        }
-
 
     }
 
     public boolean validarMail(String mail) {
-        String regEx = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$";
+        if (mail.trim().isEmpty()) return false;
+        String regEx = "^[a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$";
         Pattern regCom = Pattern.compile(regEx);
         Matcher matEX = regCom.matcher(mail);
 
@@ -86,8 +61,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    public boolean validarLogeo(String mail, String password) {
 
-    public boolean validarVacio(String mail) {
-        return mail.trim().isEmpty();
+        if ((password.length() >= 7) && (validarMail(mail))) {
+
+            return true;
+
+
+        } else {
+            return false;
+        }
+
+        if (password.length() >= 7) {
+            Toast.makeText(this, "contraseña ", Toast.LENGTH_SHORT).show();
+
+        }
+
+        if (validarMail(mail)) {
+            Toast.makeText(this, "mail bien ingresado", Toast.LENGTH_SHORT).show();
+
+        } else {
+            Toast.makeText(this, "mail mal ingresado", Toast.LENGTH_SHORT).show();
+        }
+
+
     }
 }
